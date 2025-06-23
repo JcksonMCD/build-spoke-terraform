@@ -49,13 +49,13 @@
     default = {
         lambda1 = {
         name        = "lambda-function-1"
-        handler     = "index.handler"
-        runtime     = "nodejs18.x"
+        handler     = "lambda1.lambda_handler"
+        runtime     = "python3.11"
         source_path = "hub-lambda/lambda1.zip"
         }
         lambda2 = {
         name        = "lambda-function-2"
-        handler     = "app.handler"
+        handler     = "lambda2.lambda_handler"
         runtime     = "python3.11"
         source_path = "hub-lambda/lambda2.zip"
         }

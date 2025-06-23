@@ -1,3 +1,13 @@
+    locals {
+    common_tags = {
+        environment  = var.environment,
+        project-code = var.project_code,
+        owner        = var.owner,
+        managed-by   = var.config_tool,
+        deployed-by  = var.deployed_by
+    }
+    }
+    
     variable "environment" {
         type = string
         default = "development"
@@ -43,4 +53,21 @@
         type        = list(string)
         description = "Subnet CIDR values"
         default     = ["10.10.10.0/24", "10.10.11.0/24"]
+    }
+
+    variable "lambda_functions" {
+    default = {
+        lambda1 = {
+        name        = "lambda-function-1"
+        handler     = "lambda1.lambda_handler"
+        runtime     = "python3.11"
+        source_path = "hub-lambda/lambda1.zip"
+        }
+        lambda2 = {
+        name        = "lambda-function-2"
+        handler     = "lambda2.lambda_handler"
+        runtime     = "python3.11"
+        source_path = "hub-lambda/lambda2.zip"
+        }
+    }
     }

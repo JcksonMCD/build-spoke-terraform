@@ -1,3 +1,13 @@
+    locals {
+    common_tags = {
+        environment  = var.environment,
+        project-code = var.project_code,
+        owner        = var.owner,
+        managed-by   = var.config_tool,
+        deployed-by  = var.deployed_by
+    }
+    }
+    
     variable "environment" {
         type = string
         default = "development"

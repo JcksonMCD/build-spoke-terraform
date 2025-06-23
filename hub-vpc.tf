@@ -3,14 +3,12 @@
       enable_dns_hostnames = false
       enable_dns_support = true
 
-      tags = {
-        Name = "Hub-VPC-J",
-        environment = var.environment,
-        project-code = var.project_code,
-        owner = var.owner
-        managed-by = var.config_tool,
-        deployed-by = var.deployed_by
-      }
+      tags = merge(
+        {
+          Name = "Hub VPC J"
+        },
+        local.common_tags
+      )
     }
 
     resource "aws_subnet" "hub-subnets" {
@@ -18,12 +16,30 @@
       vpc_id = aws_vpc.hub-vpc.id
       cidr_block = element(var.hub_subnet_cidrs, count.index)
 
-      tags = {
-        Name = "Hub-Subnet ${count.index + 1}",
-        environment = var.environment,
-        project-code = var.project_code,
-        owner = var.owner
-        managed-by = var.config_tool,
-        deployed-by = var.deployed_by
+      tags = merge(
+        {
+          Name = "Hub-Subnet ${count.index + 1}"
+        },
+        local.common_tags
+      )
+    }
+
+    resource "aws_security_group" "lambda_sg" {
+      name        = "lambda-security-group"
+      description = "Security group for Lambda functions"
+      vpc_id      = aws_vpc.hub-vpc.id
+
+      egress {
+        from_port   = 0
+        to_port     = 0
+        protocol    = "-1"
+        cidr_blocks = ["0.0.0.0/0"]
       }
+
+      tags = merge(
+        {
+          Name = "Hub Security Group"
+        },
+        local.common_tags
+      )
     }

@@ -1,4 +1,4 @@
-    resource "aws_vpc" "hub-vpc" {
+    resource "aws_vpc" "hub-vpc-j" {
       cidr_block = var.vpc_cidr
       enable_dns_hostnames = false
       enable_dns_support = true

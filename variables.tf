@@ -27,3 +27,20 @@
         default = "Terraform"
         description = "Configuration Tool used for setup"
     }
+
+    variable "vpc_cidr" {
+        type = string
+        default = "10.10.0.0/20"
+        description = "CIDR block for the VPC"
+
+      validation {
+        condition = anytrue([can(regex("10(?:\\.(?:[0-1]?[0-9]?[0-9])|(?:2[0-5]?[0-9])){3}\\/", var.vpc_cidr)), can(regex("172\\.(?:3?[0-1])|(?:[0-2]?[0-9])(?:\\.[0-2]?[0-5]?[0-9]){2}\\/(?:1[6-9]|2[0-9]|3[0-2])", var.vpc_cidr))])
+        error_message = "Must be a valid IP CIDR range of the form x.x.x.x/x."
+      }
+    }
+
+    variable "hub_subnet_cidrs" {
+        type        = list(string)
+        description = "Subnet CIDR values"
+        default     = ["10.10.10.0/24", "10.10.11.0/24"]
+    }

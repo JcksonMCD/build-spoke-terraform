@@ -44,3 +44,20 @@
         description = "Subnet CIDR values"
         default     = ["10.10.10.0/24", "10.10.11.0/24"]
     }
+
+    variable "lambda_functions" {
+    default = {
+        lambda1 = {
+        name        = "lambda-function-1"
+        handler     = "index.handler"
+        runtime     = "nodejs18.x"
+        source_path = "path/to/lambda1.zip"
+        }
+        lambda2 = {
+        name        = "lambda-function-2"
+        handler     = "app.handler"
+        runtime     = "python3.11"
+        source_path = "path/to/lambda2.zip"
+        }
+    }
+    }

@@ -39,7 +39,7 @@
       }
     }
 
-    variable "subnet_cidrs" {
+    variable "hub_subnet_cidrs" {
         type        = list(string)
         description = "Subnet CIDR values"
         default     = ["10.10.10.0/24", "10.10.11.0/24"]

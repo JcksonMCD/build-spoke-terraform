@@ -51,13 +51,13 @@
         name        = "lambda-function-1"
         handler     = "index.handler"
         runtime     = "nodejs18.x"
-        source_path = "path/to/lambda1.zip"
+        source_path = "hub-lambda/lambda1.zip"
         }
         lambda2 = {
         name        = "lambda-function-2"
         handler     = "app.handler"
         runtime     = "python3.11"
-        source_path = "path/to/lambda2.zip"
+        source_path = "hub-lambda/lambda2.zip"
         }
     }
     }
